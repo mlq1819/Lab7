@@ -1,0 +1,22 @@
+Unoptimized
+	NUM_NODES=10:		ASM: 0 microseconds;		C: 0 microseconds
+	NUM_NODES=100:		ASM: 1 microsecond;		C: 1 microsecond
+	NUM_NODES=1000:		ASM: 4 microseconds;		C: 10 microseconds
+	NUM_NODES=10000:	ASM: 40 microseconds;		C: 113 microseconds
+	NUM_NODES=100000:	ASM: 386 microseconds;		C: 914 microseconds
+	NUM_NODES=1000000:	ASM: 4202 microseconds;		C: 6561 microseconds
+ASM likely took less time to run than C because it is more efficient, due to the fact that we have much more precise control over the structure of programs at the assembly language than with something like C
+
+Optimized:
+	NUM_NODES=10:		ASM: 3205 microseconds;		C: 6862 microseconds
+	NUM_NODES=100:		ASM: 3204 microseconds;		C: 6869 microseconds
+	NUM_NODES=1000:		ASM: 3299 microseconds;		C: 6958 microseconds
+	NUM_NODES=10000:	ASM: 3219 microseconds;		C: 6889 microseconds
+	NUM_NODES=100000:	ASM: 3233 microseconds;		C: 6923 microseconds
+	NUM_NODES=1000000:	ASM: 3231 microseconds;		C: 6880 microseconds
+Again, ASM likely took less time because it's a more precise language to code in.  One way to make ASM faster would be to only opimize the code if it would help, as in, which would only be useful if there were more than 100,000 nodes, because for any fewer, ASM runs better unoptimized.  This may be possible to do with macros, or commands, perhaps.
+
+Number of Instructions:
+	Unopimized:		ASM: 10 instructions;		C: 35 instructions
+	Opimized:		ASM: 10 instructions;		C: 35 instructions
+Interestingly, the number of instructions for reverse_asm and reverse_c do not change based on the number of nodes, or the Opimization
